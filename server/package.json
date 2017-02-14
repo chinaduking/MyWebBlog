@@ -11,11 +11,10 @@
     "debug": "~2.2.0",
     "ejs": "^2.5.5",
     "express": "~4.14.0",
-    "jsonwebtoken": "^7.2.1",
+    "jwt-simple": "^0.5.1",
     "morgan": "~1.7.0",
     "sails-mysql": "^0.11.5",
     "serve-favicon": "~2.3.0",
-    "token": "^0.1.0",
     "waterline": "^0.11.6"
   }
 }

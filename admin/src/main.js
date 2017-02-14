@@ -18,6 +18,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to,from,next) => {
+
 	if(store.state.token == null){
 
 		if(to.path != '/login'){

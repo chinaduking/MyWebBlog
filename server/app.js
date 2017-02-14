@@ -5,11 +5,16 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var ejs = require('ejs');  //我是新引入的ejs插件
+var jwt = require('jwt-simple');
+var secret = 'duking';
 
 var index = require('./routes/index');
 var api = require('./routes/api');
 
 var app = express();
+
+//jwt
+app.set('jwtTokenSecret',secret);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

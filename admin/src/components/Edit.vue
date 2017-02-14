@@ -1,7 +1,7 @@
 <template>
    <div id="editor">
       <!-- 通过 v-model 控制 value -->
-      <markdown-editor v-model="content" ref="markdownEditor" :configs="configs"></markdown-editor>
+      <markdown-editor v-model="text" ref="markdownEditor" :configs="configs"></markdown-editor>
    </div>
 </template>
 
@@ -25,20 +25,34 @@ export default {
           codeSyntaxHighlighting: true, // 开启代码高亮
           highlightingTheme: 'atom-one-light' // 自定义代码高亮主题，可选列表(https://github.com/isagalaev/highlight.js/tree/master/src/styles)
         }
-      }
+      },
+
+      text: '',
     }
+  },
+
+  props: ['Content'],
+
+  watch: {
+    'text': 'upValue',
+    'Content': 'uptext',
   },
 
   computed: {
     simplemde () {
-      return this.$refs.markdownEditor.simplemde
-    }
+      return this.$refs.markdownEditor.simplemde;
+    },
   },
 
 
   methods: {
-    handleInput () {
-      // do some things
+    upValue () {
+      //console.log('emit')
+      this.$emit('listevent',this.text);
+    },
+
+    uptext(){
+      this.text = this.Content;
     }
   }
 }

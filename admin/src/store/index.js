@@ -9,12 +9,11 @@ Vue.use(Vuex);
 const state = {
   token: null,
 	PostList:[],
-	currentPostIndex:-1,
-	currentPostId: null,
-	articleId:null,
-  title:'',
-  postSaved:true,
-  postTitleSaved:true,
+	currentPostIndex:0,
+	curTitle:null,
+	curContent:null,
+  	postSaved:true,
+  	isNewPost:false,
 };
 
 export default new Vuex.Store({

@@ -1,14 +1,16 @@
 <template>
 	<div class="posts-list-aside">
 		<section class="post-list-column">
-			<h3 class="page-title"><i class="fui-list-columned iconfont"></i> 文章列表 <a href="#"><i class="iconfont fui-plus icon-add"></i></a></h3>
+			<h3 class="page-title"><i class="fui-list-columned iconfont"></i> 文章列表 <i class="iconfont fui-plus icon-add" @click="createPost"></i></h3>
 
 			<div class="post-list">
 				<ul class="title-list">
 					<li class="post-list-item" v-for="(post,index) in PostList" @click="focus(index)">
 						<article class="post-list-content" :class='true'>
+							<!--<h4><a href="javascript:;">{{post.title}}</a></h4>
+							<h6>{{post.updatedAt}}</h6> -->
 							<h4><a href="javascript:;">{{post.title}}</a></h4>
-							<h6>{{post.time}}</h6>
+							<h6>{{post.updatedAt}}</h6>
 						</article>
 					</li>
 				</ul>
@@ -34,17 +36,37 @@
 	export default{
 		data(){
 			return{
-
+				time: '',
 			}
 		},
 		props: ['PostList'],
 
 	    methods:{
 	      focus(index){
-	      	console.log(index);
-	      	if(index !== this.$store.state.currentPostIndex){
-	          this.$store.dispatch('focusOnPost',index);
-	        }
+	      	if(this.$store.state.postSaved){
+		      	if(index !== this.$store.state.currentPostIndex){
+		          this.$store.dispatch('focusOnPost',index);
+		        }
+	    	}else{
+	    		alert('新博客还没有保存，请先保存');
+	    	}
+	      },
+
+	      createPost(){
+	      	if(this.$store.state.postSaved){
+		      	let post = {
+		      			title: '请在此处填入新的标题！',
+				      	author: 'duking',
+				      	time: '',
+				      	url: '/posts',
+				      	content: '请在此处写入符合markdown格式的博客内容！',
+		      	};
+		      	//var time = new Date().toLocaleString();
+
+		    	this.$store.dispatch('addPost',post);
+	    	}else{
+	    		alert('新博客还没有保存，请先保存');
+	    	}
 	      },
 	    },
 	}
