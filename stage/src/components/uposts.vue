@@ -4,7 +4,7 @@
 			<li v-for="post in this.posts">
 				<div class="post_div">
 					<h2><router-link :to='post.url'>{{post.title}}</router-link></h2>
-					<p class="info">作者：<span class="author">{{post.author}}</span> &brvbar; <time class="time">{{post.time}}</time></p>
+					<p class="info">作者：<span class="author">{{post.author}}</span> &brvbar; <time class="time">{{post.updatedAt}}</time></p>
 					<p class="content"><router-link :to='post.url'><p class="post_content">{{post.content | content_header}}</p>&gt;&gt;</router-link></p>
 					<router-link :to='post.url'  class="btn btn-block btn-xs btn-primary ubtn">阅读全文</router-link>
 					<hr>
@@ -33,12 +33,14 @@
 			}
 		},
 
-		beforeCreate(){
-	      	let successCallback =(response) => {
-	        	this.posts = response.body.Posts;
-	        	this.totalPages = response.body.totalPage;    
+		created(){
+	      	let successCallback =(res) => {
+	      		console.log(res);
+	        	this.posts = res.body.Result;
+	        	this.totalPages = res.body.totalPage;    
 	      	}
-	      	let errorCallback = (json)=> {
+	      	let errorCallback = (res)=> {
+	      		console.log(res);
 	        	alert('网络不好！请刷新网络！')
 	      	}
 	      	let options = {
@@ -47,6 +49,7 @@
 	          	"limit": this.limit,
 	        	}
 	      	}
+	      	console.log(options);
 	      	this.$http.get('api/getposts',options).then(successCallback, errorCallback);
 	  	},
 

@@ -7,6 +7,7 @@ export default {
 	      	state.PostList = postList;
 	      	state.curTitle = postList[state.currentPostIndex].title;
 	    	state.curContent = postList[state.currentPostIndex].content;
+	    	state.curTime = postList[state.currentPostIndex].updateAt;
 	    }
   	},
 
@@ -15,6 +16,7 @@ export default {
 	    state.currentPostIndex = index;
 	    state.curTitle = state.PostList[index].title;
 	    state.curContent = state.PostList[index].content;
+	    state.curTime = state.PostList[index].updateAt;
   	},
 
   	[types.TOKEN_CREATE](state,index){
@@ -28,6 +30,9 @@ export default {
 	    state.currentPostIndex = 0;
 	    state.isNewPost = true;
 	    state.postSaved = false;
+	    state.curTitle = post.title;
+	    state.curContent = post.content;
+	    state.curTime = post.updateAt;
   	},
 
   	[types.DEL_POST](state,index){
@@ -36,6 +41,9 @@ export default {
 	    state.currentPostIndex = 0;
 	    state.postSaved = true;
 	    state.isNewPost = false;
+	    state.curTitle = state.PostList[state.currentPostIndex].title;
+	    state.curContent = state.PostList[state.currentPostIndex].content;
+	    state.curTime = state.PostList[state.currentPostIndex].updateAt;
   	},
 
 }

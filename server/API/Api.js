@@ -3,18 +3,20 @@ var jwt = require('jwt-simple');
 var API = {
 
     getPosts: function getPosts(req,res) {
+
+        var curPage = req.query.curPage;
+        var limit = req.query.limit;
+        var tpage = 0;
+
         req.models.post.find().exec(function(err,result) {
-            res.json({Result: result, error: err});
+            if(err == null){
+                if(result.length % limit == 0)
+                    tpage = parseInt(result.length/limit);
+                else
+                    tpage = parseInt(result.length/limit) + 1;
+            }
+            res.json({Result: result,totalPage: tpage, error: err});
         });
-        /*
-        res.json({totalPage: 17, Posts: [
-            {title:"文章1", author:"duking",time:"2017-1-16",url:"/posts",content:"内容1"},
-            {title:"文章2", author:"duking",time:"2017-1-16",url:"/posts",content:"内容2"},
-            {title:"文章3", author:"duking",time:"2017-1-16",url:"/posts",content:"内容3"},
-            {title:"文章4", author:"duking",time:"2017-1-16",url:"/posts",content:"内容4"},
-            {title:"文章5", author:"duking",time:"2017-1-16",url:"/posts",content:"内容5"},
-        ]
-        });*/
     },
 
     Login: function(req,res) {

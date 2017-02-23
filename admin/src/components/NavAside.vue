@@ -5,14 +5,14 @@
       <ul class="aside-nav-list">
         <li class="aside-nav-item"><router-link to="/home" class="aside-nav-button" title="Home"><i class="fui-home iconfont"></i></router-link></li>
         <li class="aside-nav-item"><router-link to="/posts" class="aside-nav-button"  title="文章管理"><i class="fui-list-columned iconfont"></i></router-link></li>
-        <li class="aside-nav-item"><a class="aside-nav-button" title="标签管理"><i class="fui-tag iconfont"></i></a> </li>
-        <li class="aside-nav-item"><a class="aside-nav-button" title="用户"><i class="fui-user iconfont"></i></a> </li>
+        <li class="aside-nav-item"><router-link to="/tag" class="aside-nav-button" title="标签管理"><i class="fui-tag iconfont"></i></router-link> </li>
+        <li class="aside-nav-item"><router-link to="/user" class="aside-nav-button" title="用户"><i class="fui-user iconfont"></i></router-link> </li>
       </ul>
     </nav>
     <nav class="aside-menu">
       <ul class="aside-nav-list">
         <!--<li class="aside-nav-item"><a class="aside-nav-button"><i class="icon-ordinaryset iconfont"></i></a></li>-->
-        <li class="aside-nav-item"><a class="aside-nav-button"  title="登出"><i class="fui-exit iconfont"></i> </a></li>
+        <li class="aside-nav-item"><a class="aside-nav-button"  title="登出" @click="logout"><i class="fui-exit iconfont"></i> </a></li>
       </ul>
     </nav>
   </aside>
@@ -30,5 +30,12 @@
 </style>
 
 <script>
-
+export default{
+  methods:{
+    logout() {
+      this.$store.state.token = null;
+      this.$router.push('/login');
+    }
+  }
+}
 </script>

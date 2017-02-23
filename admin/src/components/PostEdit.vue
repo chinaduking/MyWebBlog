@@ -4,7 +4,7 @@
 			<h2 class="edit-title">后台文章管理页面</h2>
 			<div class="post-edit-title">
 				<p>文章标题：</p>
-				<input type="text" class="form-control" :value="Post.title" v-model='Post.title'></input>
+				<input type="text" class="form-control" :value="$store.state.curTitle" v-model='Post.title'></input>
 			</div>
 			<div class="clearfix">
 				<div class="post-tag">
@@ -19,7 +19,7 @@
 				</div>
 			</div>
 
-			<Edit v-bind:Content="Post.content" v-on:listevent='upcontent'></Edit>
+			<Edit v-bind:Content="$store.state.curContent" v-on:listevent='upcontent'></Edit>
 
 		</section>
 	</div>
@@ -53,6 +53,7 @@ import server from '../../services/api'
 
 		props: ['Post'],
 
+		
 		watch: {
 		    '$store.state.isNewPost': 'upbtnValue',
 		    'Post.title': 'PostTitleChange',
@@ -132,8 +133,7 @@ import server from '../../services/api'
 		    		//console.log('Title内容更新');
 		    		if(this.$store.state.postSaved == true)
 		    			this.$store.state.postSaved = false;
-	    		}else if(this.Post.content==this.$store.state.curContent)
-	    			this.$store.state.postSaved = true;
+	    		}
 	    	},
 
 	    	PostContentChange(){
@@ -141,8 +141,7 @@ import server from '../../services/api'
 		    		//console.log('Content内容更新');
 		    		if(this.$store.state.postSaved == true)
 		    			this.$store.state.postSaved = false;
-	    		}else if(this.Post.title==this.$store.state.curTitle)
-	    			this.$store.state.postSaved = true;
+	    		}
 	    	},
 
 	    	upcontent(recvalue){

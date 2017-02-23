@@ -12,8 +12,10 @@ const state = {
 	currentPostIndex:0,
 	curTitle:null,
 	curContent:null,
-  	postSaved:true,
-  	isNewPost:false,
+  curTime:null,
+  postSaved:true,
+  isNewPost:false,
+  showEdit:false,
 };
 
 export default new Vuex.Store({

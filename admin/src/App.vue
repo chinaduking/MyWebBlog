@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+      <nav-aside v-if="this.$route.path != '/login' "></nav-aside>
       <router-view
         transition="fade"
         transition-mode="out-in">
@@ -7,11 +8,20 @@
   </div>
 </template>
 
-<script>
-export default {
 
+
+<script>
+import NavAside from './components/NavAside.vue'
+
+export default {
+    components:{
+        NavAside,
+      },
 }
+
 </script>
+
+
 
 <style>
 /*css 初始化 */

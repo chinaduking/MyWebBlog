@@ -7,8 +7,6 @@
 				<ul class="title-list">
 					<li class="post-list-item" v-for="(post,index) in PostList" @click="focus(index)">
 						<article class="post-list-content" :class='true'>
-							<!--<h4><a href="javascript:;">{{post.title}}</a></h4>
-							<h6>{{post.updatedAt}}</h6> -->
 							<h4><a href="javascript:;">{{post.title}}</a></h4>
 							<h6>{{post.updatedAt}}</h6>
 						</article>
@@ -64,6 +62,7 @@
 		      	//var time = new Date().toLocaleString();
 
 		    	this.$store.dispatch('addPost',post);
+		    	console.log(this.$store.state.postSaved);
 	    	}else{
 	    		alert('新博客还没有保存，请先保存');
 	    	}

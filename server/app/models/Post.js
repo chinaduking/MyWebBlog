@@ -23,7 +23,7 @@ module.exports = Waterline.Collection.extend({
         },
 
         content: {
-            type: 'string'
+            type: 'longtext'
         },
     }
 });
